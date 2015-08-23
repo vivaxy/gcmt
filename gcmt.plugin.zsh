@@ -26,17 +26,17 @@ gcmt(){
     }
     
     ## get commit message
-    msg=""
+    local msg=""
     while [ -z "${msg}" ]
     do
         log info "enter commit message: \c"
         ## todo support arrow keys
-        read msg
+        read -r msg
     done
     
     ## pull
     log debug "git pull"
-    pullResult=`git pull`
+    local pullResult=`git pull`
     if [[ "${pullResult}" =~ "Aborting" ]]
     then
         ## conflict or something not committed
@@ -49,14 +49,14 @@ gcmt(){
         git add .
         ## commit
         log debug "git commit -m \"${msg}\""
-        commitResult=`git commit -m "${msg}"`
+        local commitResult=`git commit -m "${msg}"`
         log verbose "${commitResult}"
         if [[ ! "${commitResult}" =~ "nothing to commit, working directory clean" ]]
         then
             ## continue
             ## push
             log debug "git push"
-            pushResult=`git push`
+            local pushResult=`git push`
             log verbose "${pushResult}"
             ## done
             log info "done"
