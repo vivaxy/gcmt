@@ -9,6 +9,11 @@ commit changes to git easier
 ```
 > cd ~/.oh-my-zsh/custom/plugins/
 > gcl git@github.com:vivaxy/gcmt.git
+> vim ~/.zshrc
+find `plugins=`
+add gcmt into plugins, like `plugins=(git gcmt)`
+save and exit
+> 1
 ```
 
 ## Update
@@ -16,4 +21,5 @@ commit changes to git easier
 ```
 > cd ~/.oh-my-zsh/custom/plugins/gcmt
 > gl
+> 1
 ```
