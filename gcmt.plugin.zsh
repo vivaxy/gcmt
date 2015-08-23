@@ -11,13 +11,13 @@ gcmt(){
                 pre="\033[93m"
                 ;;
             info)
-                pre="\033[92m"
+                pre="\033[96m"
                 ;;
             debug)
                 pre="\033[94m"
                 ;;
             *)
-                pre="\033[90m"
+                pre="\033[97m"
                 ;;
         esac
         echo -e "${pre}$2${post}"
