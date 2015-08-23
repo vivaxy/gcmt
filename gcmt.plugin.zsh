@@ -11,11 +11,11 @@ gcmt(){
             warn) ## yellow
                 pre="\033[33m"
                 ;;
-            info) ## clan(blue)
+            info) ## clan
                 pre="\033[36m"
                 ;;
-            debug) ## green
-                pre="\033[94m"
+            debug) ## green # blue
+                pre="\033[32m" # pre="\033[94m"
                 ;;
             *) ## gray (white)
                 pre="\033[37m"
