@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # vivaxy@20150823
 gcmt(){
     log(){
