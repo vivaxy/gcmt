@@ -37,9 +37,9 @@ gcmt(){
     ## pull
     log debug "git pull"
     pullResult=`git pull`
-    if [[ "${pullResult}" =~ "CONFLICT" ]]
+    if [[ "${pullResult}" =~ "Aborting" ]]
     then
-        ## conflict
+        ## conflict or something not committed
         log error "${pullResult}"
     else
         ## continue
@@ -50,10 +50,10 @@ gcmt(){
         ## commit
         log debug "git commit -m \"${msg}\""
         commitResult=`git commit -m "${msg}"`
+        log verbose "${commitResult}"
         if [[ ! "${commitResult}" =~ "nothing to commit, working directory clean" ]]
         then
             ## continue
-            log verbose "${commitResult}"
             ## push
             log debug "git push"
             pushResult=`git push`
@@ -62,7 +62,7 @@ gcmt(){
             log info "done"
         else
             ## clean
-            log info "${commitResult}"
+            log info "nothing to commit"
         fi
     fi
 }
