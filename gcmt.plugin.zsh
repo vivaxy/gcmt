@@ -26,7 +26,8 @@ gcmt(){
     msg=""
     while [ -z "${msg}" ]
     do
-        vared -p "enter commit message: " -c msg
+        log info "enter commit message: \c"
+        read msg
     done
     log debug "git pull"
     if [[ "`git pull`" =~ "CONFLICT" ]]
