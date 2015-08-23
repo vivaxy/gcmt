@@ -32,7 +32,7 @@ gcmt(){
     done
     log debug "git pull"
     pullResult=`git pull`
-    log verbose "${pullResult}"
+    log debug "${pullResult}"
     if [[ "${pullResult}" =~ "CONFLICT" ]]
     then
         log error "merge first"
@@ -44,7 +44,7 @@ gcmt(){
         then
             log debug "git push"
             pushResult=`git push`
-            log verbose "${pushResult}"
+            log debug "${pushResult}"
         fi
         log info "done"
     fi
