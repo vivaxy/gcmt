@@ -24,18 +24,20 @@ gcmt(){
     }
     
     log info "enter commit message: \c"
-    read msg
+    read -s msg
     log debug "git pull"
-    if [[ "`git pull`" =~ "Already up-to-date." ]]
+    if [[ "`git pull`" =~ "CONFLICT" ]]
     then
+        log error "merge first"
+    else
         log debug "git add ."
         git add .
         log debug "git commit -m \"${msg}\""
-        git commit -m "${msg}"
-        log debug "git push"
-        git push
+        if [[ ! "`git commit -m "${msg}"`" =~ "nothing to commit, working directory clean" ]]
+        then
+            log debug "git push"
+            git push
+        fi
         log info "done"
-    else
-        log error "merge first"
     fi
 }
