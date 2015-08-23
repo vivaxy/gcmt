@@ -23,7 +23,7 @@ gcmt(){
         echo "${pre}$2${post}"
     }
 
-    console info "enter commit message : \c"
+    console info "enter commit message: \c"
     read msg
     console debug "git add ."
     git add .
