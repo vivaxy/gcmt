@@ -31,4 +31,5 @@ gcmt(){
     git commit -m "${msg}"
     log debug "git push"
     git push
+    log info "done"
 }

@@ -4,6 +4,13 @@ commit changes to git easier
 
 [zsh](http://ohmyz.sh/) plugin
 
+## usage
+
+```
+> gcmt
+enter commit message: foobar
+```
+
 ## Installation
 
 ```
