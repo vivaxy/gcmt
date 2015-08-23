@@ -14,6 +14,6 @@ commit changes to git easier
 ## Update
 
 ```
-> cd ~/.oh-my-zsh/custom/plugins/
+> cd ~/.oh-my-zsh/custom/plugins/gcmt
 > gl
 ```
