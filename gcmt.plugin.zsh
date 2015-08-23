@@ -26,7 +26,7 @@ gcmt(){
     log info "enter commit message: \c"
     read msg
     log debug "git pull"
-    if [[ `git pull` -eq "Already up-to-date." ]]
+    if [[ "`git pull`" =~ "Already up-to-date." ]]
     then
         log debug "git add ."
         git add .
