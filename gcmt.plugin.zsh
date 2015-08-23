@@ -27,10 +27,13 @@ gcmt(){
     while [ -z "${msg}" ]
     do
         log info "enter commit message: \c"
+        # todo support arrow keys
         read msg
     done
     log debug "git pull"
-    if [[ "`git pull`" =~ "CONFLICT" ]]
+    pullResult=`git pull`
+    log verbose "${pullResult}"
+    if [[ "${pullResult}" =~ "CONFLICT" ]]
     then
         log error "merge first"
     else
@@ -40,7 +43,8 @@ gcmt(){
         if [[ ! "`git commit -m "${msg}"`" =~ "nothing to commit, working directory clean" ]]
         then
             log debug "git push"
-            git push
+            pushResult=`git push`
+            log verbose "${pushResult}"
         fi
         log info "done"
     fi
