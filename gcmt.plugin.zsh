@@ -23,8 +23,11 @@ gcmt(){
         echo -e "${pre}$2${post}"
     }
     
-    log info "enter commit message: \c"
-    read -s msg
+    msg=""
+    while [ -z "${msg}" ]
+    do
+        vared -p "enter commit message: " -c msg
+    done
     log debug "git pull"
     if [[ "`git pull`" =~ "CONFLICT" ]]
     then
