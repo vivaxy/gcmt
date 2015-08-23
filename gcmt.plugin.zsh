@@ -23,8 +23,8 @@ gcmt(){
         echo -e "${pre}$2${post}"
     }
 
-    log info "git pull"
-    if [ `git pull` == "Already up-to-date." ]
+    log debug "git pull"
+    if [ `git pull` -eq "Already up-to-date." ]
     then
         log info "enter commit message: \c"
         read msg
