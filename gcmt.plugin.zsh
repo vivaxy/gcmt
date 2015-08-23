@@ -23,13 +23,19 @@ gcmt(){
         echo -e "${pre}$2${post}"
     }
 
-    log info "enter commit message: \c"
-    read -e msg
-    log debug "git add ."
-    git add .
-    log debug "git commit -m \"${msg}\""
-    git commit -m "${msg}"
-    log debug "git push"
-    git push
-    log info "done"
+    log info "git pull"
+    if [ `git pull` == "Already up-to-date." ]
+    then
+        log info "enter commit message: \c"
+        read msg
+        log debug "git add ."
+        git add .
+        log debug "git commit -m \"${msg}\""
+        git commit -m "${msg}"
+        log debug "git push"
+        git push
+        log info "done"
+    else
+        log error "merge first"
+    fi
 }
