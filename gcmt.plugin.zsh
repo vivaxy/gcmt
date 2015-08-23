@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # vivaxy@20150823
 gcmt(){
-    console(){
+    log(){
         post="\033[0m"
         case "$1" in
             error)
@@ -23,12 +23,12 @@ gcmt(){
         echo "${pre}$2${post}"
     }
 
-    console info "enter commit message: \c"
+    log info "enter commit message: \c"
     read msg
-    console debug "git add ."
+    log debug "git add ."
     git add .
-    console debug "git commit -m \"${msg}\""
+    log debug "git commit -m \"${msg}\""
     git commit -m "${msg}"
-    console debug "git push"
+    log debug "git push"
     git push
 }
