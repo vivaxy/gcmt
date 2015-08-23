@@ -22,12 +22,12 @@ gcmt(){
         esac
         echo -e "${pre}$2${post}"
     }
-
+    
+    log info "enter commit message: \c"
+    read msg
     log debug "git pull"
-    if [ `git pull` -eq "Already up-to-date." ]
+    if [[ `git pull` -eq "Already up-to-date." ]]
     then
-        log info "enter commit message: \c"
-        read msg
         log debug "git add ."
         git add .
         log debug "git commit -m \"${msg}\""
