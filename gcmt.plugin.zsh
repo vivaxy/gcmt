@@ -2,50 +2,67 @@
 # vivaxy@20150823
 gcmt(){
     log(){
+        ## clean color
         post="\033[0m"
         case "$1" in
-            error)
+            error) ## red
                 pre="\033[31m"
                 ;;
-            warn)
+            warn) ## yellow
                 pre="\033[33m"
                 ;;
-            info)
+            info) ## clan(blue)
                 pre="\033[36m"
                 ;;
-            debug)
+            debug) ## green
                 pre="\033[94m"
                 ;;
-            *)
+            *) ## gray (white)
                 pre="\033[37m"
                 ;;
         esac
+        ## chalk with color
         echo -e "${pre}$2${post}"
     }
     
+    ## get commit message
     msg=""
     while [ -z "${msg}" ]
     do
         log info "enter commit message: \c"
-        # todo support arrow keys
+        ## todo support arrow keys
         read msg
     done
+    
+    ## pull
     log debug "git pull"
     pullResult=`git pull`
     if [[ "${pullResult}" =~ "CONFLICT" ]]
     then
+        ## conflict
         log error "${pullResult}"
     else
+        ## continue
         log verbose "${pullResult}"
+        ## add
         log debug "git add ."
         git add .
+        ## commit
         log debug "git commit -m \"${msg}\""
-        if [[ ! "`git commit -m "${msg}"`" =~ "nothing to commit, working directory clean" ]]
+        commitResult=`git commit -m "${msg}"`
+        if [[ ! "${commitResult}" =~ "nothing to commit, working directory clean" ]]
         then
+            ## continue
+            log verbose "${commitResult}"
+            ## push
             log debug "git push"
             pushResult=`git push`
             log verbose "${pushResult}"
+            ## done
+            log info "done"
+        else
+            ## clean
+            log info "${commitResult}"
         fi
-        log info "done"
     fi
 }
