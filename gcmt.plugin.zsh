@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # vivaxy@20150823
 gcmt(){
     log(){
@@ -20,11 +20,11 @@ gcmt(){
                 pre="\033[90m"
                 ;;
         esac
-        echo "${pre}$2${post}"
+        echo -e "${pre}$2${post}"
     }
 
     log info "enter commit message: \c"
-    read msg
+    read -e msg
     log debug "git add ."
     git add .
     log debug "git commit -m \"${msg}\""
