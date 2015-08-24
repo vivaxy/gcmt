@@ -60,9 +60,6 @@ gcmt(){
             log verbose "${pushResult}"
             ## done
             log info "done"
-        else
-            ## clean
-            log info "nothing to commit"
         fi
     fi
 }
