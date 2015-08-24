@@ -26,7 +26,7 @@ gcmt(){
     }
     
     ## get commit message
-    local msg=""
+    msg=""
     while [ -z "${msg}" ]
     do
         log info "enter commit message: \c"
@@ -36,8 +36,8 @@ gcmt(){
     
     ## pull
     log debug "git pull"
-    local pullResult=`git pull`
-    if [[ "${pullResult}" =~ "Aborting" ]]
+    pullResult=`git pull`
+    if [[ "${pullResult}" =~ "Aborting" || "${pullResult}" =~ "There is no tracking information for the current branch" ]]
     then
         ## conflict or something not committed
         log error "${pullResult}"
@@ -49,14 +49,14 @@ gcmt(){
         git add .
         ## commit
         log debug "git commit -m \"${msg}\""
-        local commitResult=`git commit -m "${msg}"`
+        commitResult=`git commit -m "${msg}"`
         log verbose "${commitResult}"
         if [[ ! "${commitResult}" =~ "nothing to commit, working directory clean" ]]
         then
             ## continue
             ## push
             log debug "git push"
-            local pushResult=`git push`
+            pushResult=`git push`
             log verbose "${pushResult}"
             ## done
             log info "done"
