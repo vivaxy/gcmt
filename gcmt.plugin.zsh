@@ -37,12 +37,10 @@ gcmt(){
     ## pull
     log debug "git pull"
     pullResult=`git pull`
-    if [[ "${pullResult}" =~ "Aborting" ]]
+    ## todo cannot find `There is no tracking information for the current branch`, why?!!
+    if [[ "${pullResult}" =~ "Aborting" || "${pullResult}" =~ "There is no tracking information for the current branch" ]]
     then
         ## conflict or something not committed
-        log error "${pullResult}"
-    elif [[ "${pullResult}" =~ "There is no tracking information for the current branch" ]]
-    then
         log error "${pullResult}"
     else
         ## continue
