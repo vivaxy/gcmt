@@ -36,31 +36,31 @@ gcmt(){
     
     ## pull
     log debug "git pull"
-    pullResult=`git pull`
-    ## todo cannot find `There is no tracking information for the current branch`, why?!!
-    if [[ "${pullResult}" =~ "Aborting" || "${pullResult}" =~ "There is no tracking information for the current branch" ]]
+    ## redirect stderr to stdout
+    pullResult=`git pull 2>&1`
+    if [[ "${pullResult}" =~ "Already up-to-date." ]]
     then
-        ## conflict or something not committed
-        log error "${pullResult}"
-    else
-        ## continue
+    ## continue
         log verbose "${pullResult}"
         ## add
         log debug "git add ."
         git add .
         ## commit
         log debug "git commit -m \"${msg}\""
-        commitResult=`git commit -m "${msg}"`
+        commitResult=`git commit -m "${msg}" 2>&1`
         log verbose "${commitResult}"
         if [[ ! "${commitResult}" =~ "nothing to commit, working directory clean" ]]
         then
             ## continue
             ## push
             log debug "git push"
-            pushResult=`git push`
+            pushResult=`git push 2>&1`
             log verbose "${pushResult}"
             ## done
             log info "done"
         fi
+    else
+        ## conflict or something not committed
+        log error "${pullResult}"
     fi
 }
