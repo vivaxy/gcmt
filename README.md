@@ -4,6 +4,8 @@ commit changes to git easier
 
 [zsh](http://ohmyz.sh/) plugin
 
+best work for self maintaining git repositories
+
 ## usage
 
 ```

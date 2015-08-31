@@ -34,33 +34,36 @@ gcmt(){
         read -r msg
     done
     
-    ## pull
-    log debug "git pull"
-    ## redirect stderr to stdout
-    pullResult=`git pull 2>&1`
-    if [[ "${pullResult}" =~ "Already up-to-date." ]]
+#    ## pull
+#    log debug "git pull"
+#    ## redirect stderr to stdout
+#    pullResult=`git pull 2>&1`
+#    if [[ "${pullResult}" =~ "Already up-to-date." ]]
+#    then
+#        ## continue
+#        log verbose "${pullResult}"
+
+    ## add
+    log debug "git add ."
+    git add .
+    ## commit
+    log debug "git commit -m \"${msg}\""
+    commitResult=`git commit -m "${msg}" 2>&1`
+    log verbose "${commitResult}"
+    if [[ ! "${commitResult}" =~ "nothing to commit, working directory clean" ]]
     then
-    ## continue
-        log verbose "${pullResult}"
-        ## add
-        log debug "git add ."
-        git add .
-        ## commit
-        log debug "git commit -m \"${msg}\""
-        commitResult=`git commit -m "${msg}" 2>&1`
-        log verbose "${commitResult}"
-        if [[ ! "${commitResult}" =~ "nothing to commit, working directory clean" ]]
-        then
-            ## continue
-            ## push
-            log debug "git push"
-            pushResult=`git push 2>&1`
-            log verbose "${pushResult}"
-            ## done
-            log info "done"
-        fi
-    else
-        ## conflict or something not committed
-        log error "${pullResult}"
+        ## continue
+        ## push
+        log debug "git push"
+        pushResult=`git push 2>&1`
+        log verbose "${pushResult}"
+        ## done
+        log info "done"
     fi
+    
+#    else
+#        ## conflict or something not committed
+#        log error "${pullResult}"
+#    fi
+
 }
