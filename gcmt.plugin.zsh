@@ -53,8 +53,10 @@ gcmt(){
     if [[ ! "${commitResult}" =~ "nothing to commit, working directory clean" ]]
     then
         ## continue
+        remoteName=`get remote`
+        branchName=`git symbolic-ref --short HEAD`
         ## push
-        log debug "git push"
+        log debug "git push ${remoteName} ${branchName}"
         pushResult=`git push 2>&1`
         log verbose "${pushResult}"
         ## done
