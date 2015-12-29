@@ -28,7 +28,7 @@ gcmt(){
     }
 
     ## get commit message
-    msg=""
+    msg="${*}"
     while [ -z "${msg}" ]
     do
         log info "enter commit message: \c"
