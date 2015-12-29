@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
+
 # vivaxy@20150823
+
 gcmt(){
     log(){
         ## clean color
@@ -24,7 +26,7 @@ gcmt(){
         ## chalk with color
         echo -e "${pre}$2${post}"
     }
-    
+
     ## get commit message
     msg=""
     while [ -z "${msg}" ]
@@ -33,15 +35,6 @@ gcmt(){
         ## todo support arrow keys
         read -r msg
     done
-    
-#    ## pull
-#    log debug "git pull"
-#    ## redirect stderr to stdout
-#    pullResult=`git pull 2>&1`
-#    if [[ "${pullResult}" =~ "Already up-to-date." ]]
-#    then
-#        ## continue
-#        log verbose "${pullResult}"
 
     ## add
     log debug "git add ."
@@ -62,10 +55,5 @@ gcmt(){
         ## done
         log info "done"
     fi
-    
-#    else
-#        ## conflict or something not committed
-#        log error "${pullResult}"
-#    fi
 
 }
