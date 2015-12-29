@@ -13,6 +13,12 @@ best work for self maintaining git repositories
 enter commit message: foobar
 ```
 
+or
+
+```
+> gcmt commit message can be entered like this now
+```
+
 ## Installation
 
 ```
