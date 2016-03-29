@@ -50,10 +50,9 @@ gcmt(){
         branchName=`git symbolic-ref --short HEAD`
         ## push
         log debug "git push ${remoteName} ${branchName}"
-        pushResult=`git push 2>&1`
+        pushResult=`git push ${remoteName} ${branchName} 2>&1`
         log verbose "${pushResult}"
         ## done
         log info "done"
     fi
-
 }
