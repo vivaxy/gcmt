@@ -23,7 +23,7 @@ or
 
 ```
 > cd ~/.oh-my-zsh/custom/plugins/
-> gcl git@github.com:vivaxy/gcmt.git
+> gcl https://github.com/vivaxy/gcmt.git
 > vim ~/.zshrc
 find `plugins=`
 add gcmt into plugins, like `plugins=(git gcmt)`
