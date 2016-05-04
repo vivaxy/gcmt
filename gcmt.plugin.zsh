@@ -41,7 +41,7 @@ gcmt(){
     git add .
     ## commit
     log debug "git commit -m \"${msg}\""
-    commitResult=`git commit -m "${msg}" 2>&1`
+    commitResult=`git commit -m "${msg}"`
     log verbose "${commitResult}"
     if [[ ! "${commitResult}" =~ "nothing to commit, working directory clean" ]]
     then
