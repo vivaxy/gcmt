@@ -38,3 +38,12 @@ save and exit
 > gl
 > 1
 ```
+
+### windows bash installation
+
+```
+> git clone https://github.com/vivaxy/gcmt.git ~/.bash/gcmt
+> vim ~/.bashrc
+add `source ~/.bash/gcmt/gcmt.plugin.zsh`
+save and exit
+```
